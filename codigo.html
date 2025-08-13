@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PIX Oferta - Igreja de Cristo Mant-Anápolis</title>
+  <style>
+    body { 
+      font-family: Arial, sans-serif; 
+      margin: 0; padding: 20px; 
+      background: #ffffff; 
+      color: #222; 
+      text-align: center; 
+    }
+    
+    h1 { 
+      font-size: 20px; 
+      margin-bottom: 10px; 
+    }
+
+    p { 
+      font-size: 14px; 
+      color: #555; 
+    }
+    #qrcode { 
+      margin: 20px auto; 
+    }
+    .code-block { 
+      background: #f3f3f3; 
+      padding: 10px; 
+      border-radius: 6px; 
+      word-break: break-all; 
+      margin: 10px 0; 
+      font-size: 14px; 
+    }
+
+    button { 
+      background: #06b6d4; 
+      color: white; 
+      border: none; 
+      padding: 10px 16px; 
+      border-radius: 6px; 
+      font-size: 14px; 
+      cursor: pointer; 
+    }
+
+    button:active { 
+      background: #0591a8; 
+    }
+  </style>
+</head>
+<body>
+  <h1>Envie sua oferta via PIX</h1>
+  <p>Escaneie o QR Code ou copie o código abaixo e cole no app do seu banco. Você define o valor.</p>
+
+  <div id="qrcode"></div>
+
+  <div id="pixCode" class="code-block"></div>
+  <button id="copyBtn">Copiar código PIX</button>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+  <script>
+    const pixCopiacola = `00020126460014BR.GOV.BCB.PIX0124mantanapolis@hotmail.com5204000053039865802BR5921Igreja de Cristo Mant6008Anapolis62190515OFERTACONTRUCAO6304403E`;
+
+    // Exibir código
+    document.getElementById('pixCode').textContent = pixCopiacola;
+
+    // Gerar QR Code
+    const qr = new QRious({
+      element: document.createElement('canvas'),
+      value: pixCopiacola,
+      size: 200,
+      level: 'H'
+    });
+    document.getElementById('qrcode').appendChild(qr.element);
+
+    // Copiar código
+    document.getElementById('copyBtn').addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(pixCopiacola);
+        document.getElementById('copyBtn').textContent = 'Copiado ✅';
+        setTimeout(() => document.getElementById('copyBtn').textContent = 'Copiar código PIX', 1500);
+      } catch {
+        alert('Não foi possível copiar automaticamente. Copie manualmente.');
+      }
+    });
+  </script>
+</body>
+</html>
+<!-- """ -->
+<!-- 
+minimal_file_path = "/mnt/data/landing-pix-minimal.html"
+with open(minimal_file_path, "w", encoding="utf-8") as f:
+    f.write(minimal_html)
+
+minimal_file_path -->
